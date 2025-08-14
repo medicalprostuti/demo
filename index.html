@@ -80,94 +80,6 @@
     .green-button-box:hover {
       background-color: #388E3C; /* A darker shade of green for hover */
     }
-    /* Modal Styles for Login Popup */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      width: 300px;
-      position: relative;
-    }
-    .close-button {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      cursor: pointer;
-    }
-    .close-button:hover,
-    .close-button:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .modal-content h1 {
-      color: #1b0b54;
-      margin-bottom: 10px;
-    }
-    .modal-content input {
-      font-family: "Hind Siliguri", sans-serif;
-      width: 80%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .modal-content button {
-      font-family: "Hind Siliguri", sans-serif;
-      padding: 15px 30px;
-      background-color: #1b0b54;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 5px;
-      margin-top: 20px;
-      width: 50%;
-      transition: background-color 0.3s ease;
-    }
-    .modal-content button:hover {
-      background-color: #0a0633;
-    }
-    .forgot-register {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-    }
-    .forgot-register a {
-      color: #1b0b54;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .forgot-register a:hover {
-      text-decoration: underline;
-    }
-    .error {
-      color: #ff0800;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
@@ -177,77 +89,12 @@
   </div>
 
   <div class="button-grid" id="buttonGrid">
-    <a href="https://medicalprostuti.github.io/subject/" class="button-box" onclick="showLogin()">অনুশীলন</a>
+    <a href="#" class="button-box">অনুশীলন</a>
     <a href="#" class="button-box">ডেইলি</a>
-    <a href="#" class="button-box" onclick="showLogin()">উইকলি</a>
-    <a href="#" class="button-box" onclick="showLogin()">সাবজেক্ট ফাইনাল</a>
-    <a href="#" class="button-box" onclick="showLogin()">পেপার ফাইনাল</a>
+    <a href="#" class="button-box">উইকলি</a>
+    <a href="#" class="button-box">সাবজেক্ট ফাইনাল</a>
+    <a href="#" class="button-box">পেপার ফাইনাল</a>
     <a href="#" class="button-box">মডেল টেস্ট</a>
-    <a href="#" class="button-box green-button-box">প্রশ্ন ব্যাংক</a>
-    <a href="#" class="button-box" onclick="showLogin()">ম্যাটারিয়ালস</a>
-    <a href="#" class="button-box">প্রোগ্রেস কার্ড</a>
-    <a href="#" class="button-box">ইউজার গাইডলাইন</a>
-    <a href="#" class="button-box">যোগাযোগ</a>
-    <a href="#" class="button-box">আমাদের সম্পর্কে</a>
   </div>
-
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <span class="close-button" onclick="closeLogin()">&times;</span>
-      <h1 style="color: #1b0b54;">তথ্য দাও</h1>
-      <input type="text" id="userID" placeholder="রোল নাম্বার" required>
-      <input type="password" id="password" placeholder="সিরিয়াল নাম্বার" required>
-      <button id="loginBtn" onclick="validateLogin()">শুরু করো</button>
-      <div class="forgot-register">
-        <a href="#" class="forgot-link">রোল ভুলে গেছো</a> |
-        <a href="#" class="register-link">রেজিস্ট্রেশন করো</a>
-      </div>
-      <p class="error" id="errorMessage"></p>
-    </div>
-  </div>
-
-  <script>
-    const users = [
-      { id: "7392041", pass: "835172" },
-      { id: "arafat", pass: "bodi" },
-      { id: "ullas", pass: "ullas" }
-    ];
-
-    function showLogin() {
-      document.getElementById('loginModal').style.display = 'flex';
-      document.getElementById('errorMessage').innerText = '';
-    }
-
-    function closeLogin() {
-      document.getElementById('loginModal').style.display = 'none';
-    }
-
-    function validateLogin() {
-      const userID = document.getElementById("userID").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const errorMessage = document.getElementById("errorMessage");
-
-      if (!userID || !password) {
-        errorMessage.innerText = "রোল নাম্বার এবং সিরিয়াল নাম্বার পূরণ করুন!";
-        return;
-      }
-
-      const isValid = users.some(user =>
-        user.id.toLowerCase() === userID.toLowerCase() && user.pass === password
-      );
-
-      if (isValid) {
-        try {
-          sessionStorage.setItem("isLoggedIn", "true");
-          sessionStorage.setItem("userID", userID);
-          window.location.href = "https://www.facebook.com/";
-        } catch (e) {
-          console.error("Session storage error:", e);
-        }
-      } else {
-        errorMessage.innerText = "ভুল রোল নাম্বার বা সিরিয়াল নাম্বার!";
-      }
-    }
-  </script>
 </body>
 </html>
